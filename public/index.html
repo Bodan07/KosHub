@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KosHub</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+
+<style>
+    .banner{
+      height: 100vh;
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/banner2.jpg');
+      background-size: cover;
+      background-position: center;
+  
+    }
+
+    .banner-content{
+      height: 100%;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .carousel-content{
+      background-color: #ffffff;
+      color: white;
+    }
+
+    .carousel-height{
+      height: 80vh;
+      align-items: center;
+      position: bottom 0;
+    }
+
+    .navbar{
+        transition: all 0.5s;
+    }
+
+    .navbar-scrolled{
+      background-color: #212529;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+    }
+
+    table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2
+        }
+
+        #addRoomForm {
+            margin-bottom: 16px;
+        }
+        html {
+          scroll-behavior: smooth;
+        }
+</style>
+
+<body>
+
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="#">
+            <span class="navbar-brand mb-0 h1"> KosHub</span>
+          </a>
+
+          <button class="navbar-toggler" 
+            type="button" 
+            data-bs-toggle="collapse" 
+            data-bs-target="#navbarSupportedContent" 
+            aria-controls="navbarSupportedContent" 
+            aria-expanded="false" 
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item mx-3">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item mx-3">
+                <a class="nav-link" href="#carouselSection">Profile</a>
+              </li>
+              <li class="nav-item mx-3">
+                <a class="nav-link" href="#Kamar">Kamar</a>
+              </li>
+            </ul>
+            <form class="d-flex" role="search">
+              <input class="form-control me-5" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-light" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+
+    </nav>
+    <!-- end of navbar -->
+
+    <!-- banner -->
+    <div class="container-fluid banner">
+      <div class="container banner-content col-lg-6">
+        <div>
+          <p class="fs-1 text-center">KosHub</p>
+          <p class="d-none d-sm-block text-center">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugit quibusdam perferendis eos animi vitae veritatis dolor molestiae voluptas quia iur</p>
+        </div>
+      </div>
+    </div>
+    <!-- end of banner -->
+    
+    <!-- carousel -->
+    <div id="carouselSection" class="container-fluid carousel-content py-5">
+        <div class="container">
+          <h2 class="text-center mb-5 fw-bold" style="color: #212529;">Discover Our Brand</h2>
+          <div id="carouselExampleCaptions" class="carousel slide col-lg" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 0"></button>
+            </div>
+            <div class="carousel-inner">
+              <div class="carousel-item active carousel-height">
+                <img src="images/slide1.jpg" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item carousel-height">
+                <img src="images/slide2.jpg" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item carousel-height">
+                <img src="images/slide3.jpg" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item carousel-height">
+                <img src="images/slide4.jpg" class="d-block w-100" alt="...">
+              </div>
+            
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+    </div>
+    <!-- end of carousel -->
+
+    <!-- node -->
+    <div id="Kamar" class="container mt-5">
+      <form id="addRoomForm" class="border p-4 rounded">
+          <h4 class="mb-4">Add Room</h4>
+          <div class="form-group">
+              <label for="roomName">Room Name:</label>
+              <input type="text" class="form-control" id="roomName" name="roomName" required>
+          </div>
+          <div class="form-group">
+              <label for="roomStatus">Room Status:</label>
+              <select class="form-control" id="roomStatus" name="roomStatus" required>
+                  <option value="Available">Available</option>
+                  <option value="Unavailable">Unavailable</option>
+              </select>
+          </div>
+          <div class="form-group">
+              <label for="boarderName">Boarder's Name:</label>
+              <input type="text" class="form-control" id="boarderName" name="boarderName">
+          </div>
+          <div class="form-group">
+              <label for="boarderPhone">Boarder's Phone Number:</label>
+              <input type="tel" class="form-control" id="boarderPhone" name="boarderPhone">
+          </div>
+          <div class="form-group">
+              <label for="dateOccupied">Date Occupied:</label>
+              <input type="date" class="form-control" id="dateOccupied" name="dateOccupied">
+          </div>
+          <div class="form-group">
+              <label for="billing">Billing:</label>
+              <select class="form-control" id="billing" name="billing">
+                  <option value="Monthly">Monthly</option>
+                  <option value="Annually">Annually</option>
+              </select>
+          </div>
+          <input type="hidden" id="editMode" name="editMode" value="false">
+          <input type="hidden" id="editRoomName" name="editRoomName">
+          <button type="submit" class="btn btn-primary">Add Room</button>
+      </form>
+
+      <table id="roomList" class="table table-striped mt-5">
+          <thead>
+              <tr>
+                  <th>Room Name</th>
+                  <th>Room Status</th>
+                  <th>Boarder's Name</th>
+                  <th>Boarder's Phone Number</th>
+                  <th>Date Occupied</th>
+                  <th>Billing</th>
+                  <th>Actions</th>
+              </tr>
+          </thead>
+          <tbody></tbody>
+      </table>
+  </div>
+  <!-- end node -->
+
+    <script>
+      const navEl = document.querySelector('.navbar');
+
+      window.addEventListener('scroll', () => {
+          if (window.scrollY >= 56) {
+              navEl.classList.add('navbar-scrolled')
+          } else if (window.scrollY < 56){
+              navEl.classList.remove('navbar-scrolled')
+          }
+      })
+
+        document.getElementById('addRoomForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const isEditMode = document.getElementById('editMode').value === 'true';
+            const roomName = document.getElementById('editRoomName').value || document.getElementById('roomName').value;
+
+            const room = {
+                name: document.getElementById('roomName').value,
+                status: document.getElementById('roomStatus').value,
+                boarderName: document.getElementById('boarderName').value || '-',
+                boarderPhone: document.getElementById('boarderPhone').value || '-',
+                dateOccupied: document.getElementById('dateOccupied').value || '-',
+                billing: document.getElementById('billing').value
+            };
+
+            if (isEditMode) {
+                fetch(`/api/rooms/${roomName}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(room)
+                })
+                .then(response => response.json())
+                .then(displayRoomList)
+                .catch(error => console.error('Error:', error));
+            } else {
+                fetch('/api/rooms', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(room)
+                })
+                .then(response => response.json())
+                .then(displayRoomList)
+                .catch(error => console.error('Error:', error));
+            }
+
+            document.getElementById('addRoomForm').reset();
+            document.getElementById('editMode').value = 'false';
+            document.getElementById('submitButton').value = 'Add Room';
+        });
+
+        function displayRoomList() {
+            fetch('/api/rooms')
+            .then(response => response.json())
+            .then(rooms => {
+                const tbody = document.querySelector('#roomList tbody');
+                tbody.innerHTML = '';
+
+                rooms.forEach(room => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>${room.name}</td>
+                        <td>${room.status}</td>
+                        <td>${room.boarderName}</td>
+                        <td>${room.boarderPhone}</td>
+                        <td>${room.dateOccupied}</td>
+                        <td>${room.billing}</td>
+                        <td>
+                            <button onclick="editRoom('${room.name}')">Edit</button>
+                            <button onclick="deleteRoom('${room.name}')">Delete</button>
+                        </td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        function editRoom(name) {
+            fetch(`/api/rooms/${name}`)
+            .then(response => response.json())
+            .then(room => {
+                document.getElementById('roomName').value = room.name;
+                document.getElementById('roomStatus').value = room.status;
+                document.getElementById('boarderName').value = room.boarderName;
+                document.getElementById('boarderPhone').value = room.boarderPhone;
+                document.getElementById('dateOccupied').value = room.dateOccupied;
+                document.getElementById('billing').value = room.billing;
+                document.getElementById('editMode').value = 'true';
+                document.getElementById('editRoomName').value = room.name;
+                document.getElementById('submitButton').value = 'Save';
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        function deleteRoom(name) {
+            fetch(`/api/rooms/${name}`, {
+                method: 'DELETE'
+            })
+            .then(displayRoomList)
+            .catch(error => console.error('Error:', error));
+        }
+
+        // Initial display of stored rooms
+        displayRoomList();
+    </script>
+
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+</body>
+</html>

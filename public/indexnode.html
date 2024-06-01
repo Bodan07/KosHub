@@ -1,0 +1,174 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Room Rental Management</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2
+        }
+
+        #addRoomForm {
+            margin-bottom: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Room Rental Management</h2>
+
+    <form id="addRoomForm">
+        <label for="roomName">Room Name:</label><br>
+        <input type="text" id="roomName" name="roomName" required><br>
+        <label for="roomStatus">Room Status:</label><br>
+        <select id="roomStatus" name="roomStatus" required>
+            <option value="Available">Available</option>
+            <option value="Unavailable">Unavailable</option>
+        </select><br>
+        <label for="boarderName">Boarder's Name:</label><br>
+        <input type="text" id="boarderName" name="boarderName"><br>
+        <label for="boarderPhone">Boarder's Phone Number:</label><br>
+        <input type="tel" id="boarderPhone" name="boarderPhone"><br>
+        <label for="dateOccupied">Date Occupied:</label><br>
+        <input type="date" id="dateOccupied" name="dateOccupied"><br>
+        <label for="billing">Billing:</label><br>
+        <select id="billing" name="billing">
+            <option value="Monthly">Monthly</option>
+            <option value="Annually">Annually</option>
+        </select><br>
+        <input type="hidden" id="editMode" name="editMode" value="false">
+        <input type="hidden" id="editRoomName" name="editRoomName">
+        <input type="submit" id="submitButton" value="Add Room">
+    </form>
+
+    <table id="roomList">
+        <thead>
+            <tr>
+                <th>Room Name</th>
+                <th>Room Status</th>
+                <th>Boarder's Name</th>
+                <th>Boarder's Phone Number</th>
+                <th>Date Occupied</th>
+                <th>Billing</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        document.getElementById('addRoomForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const isEditMode = document.getElementById('editMode').value === 'true';
+            const roomName = document.getElementById('editRoomName').value || document.getElementById('roomName').value;
+
+            const room = {
+                name: document.getElementById('roomName').value,
+                status: document.getElementById('roomStatus').value,
+                boarderName: document.getElementById('boarderName').value || '-',
+                boarderPhone: document.getElementById('boarderPhone').value || '-',
+                dateOccupied: document.getElementById('dateOccupied').value || '-',
+                billing: document.getElementById('billing').value
+            };
+
+            if (isEditMode) {
+                fetch(`/api/rooms/${roomName}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(room)
+                })
+                .then(response => response.json())
+                .then(displayRoomList)
+                .catch(error => console.error('Error:', error));
+            } else {
+                fetch('/api/rooms', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(room)
+                })
+                .then(response => response.json())
+                .then(displayRoomList)
+                .catch(error => console.error('Error:', error));
+            }
+
+            document.getElementById('addRoomForm').reset();
+            document.getElementById('editMode').value = 'false';
+            document.getElementById('submitButton').value = 'Add Room';
+        });
+
+        function displayRoomList() {
+            fetch('/api/rooms')
+            .then(response => response.json())
+            .then(rooms => {
+                const tbody = document.querySelector('#roomList tbody');
+                tbody.innerHTML = '';
+
+                rooms.forEach(room => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>${room.name}</td>
+                        <td>${room.status}</td>
+                        <td>${room.boarderName}</td>
+                        <td>${room.boarderPhone}</td>
+                        <td>${room.dateOccupied}</td>
+                        <td>${room.billing}</td>
+                        <td>
+                            <button onclick="editRoom('${room.name}')">Edit</button>
+                            <button onclick="deleteRoom('${room.name}')">Delete</button>
+                        </td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        function editRoom(name) {
+            fetch(`/api/rooms/${name}`)
+            .then(response => response.json())
+            .then(room => {
+                document.getElementById('roomName').value = room.name;
+                document.getElementById('roomStatus').value = room.status;
+                document.getElementById('boarderName').value = room.boarderName;
+                document.getElementById('boarderPhone').value = room.boarderPhone;
+                document.getElementById('dateOccupied').value = room.dateOccupied;
+                document.getElementById('billing').value = room.billing;
+                document.getElementById('editMode').value = 'true';
+                document.getElementById('editRoomName').value = room.name;
+                document.getElementById('submitButton').value = 'Save';
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        function deleteRoom(name) {
+            fetch(`/api/rooms/${name}`, {
+                method: 'DELETE'
+            })
+            .then(displayRoomList)
+            .catch(error => console.error('Error:', error));
+        }
+
+        // Initial display of stored rooms
+        displayRoomList();
+    </script>
+</body>
+</html> -->
