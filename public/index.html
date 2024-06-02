@@ -195,9 +195,17 @@
                   <option value="Annually">Annually</option>
               </select>
           </div>
+          <div class="form-group">
+              <label for="nextBilling">Next Billing Date:</label>
+              <input type="date" class="form-control" id="nextBilling" name="nextBilling">
+          </div>
+          <div class="form-group">
+              <label for="endDate">End Date:</label>
+              <input type="date" class="form-control" id="endDate" name="endDate">
+          </div>
           <input type="hidden" id="editMode" name="editMode" value="false">
           <input type="hidden" id="editRoomName" name="editRoomName">
-          <button type="submit" class="btn btn-primary">Add Room</button>
+          <button type="submit" class="btn btn-primary" id="submitButton">Add Room</button>
       </form>
 
       <table id="roomList" class="table table-striped mt-5">
@@ -209,6 +217,8 @@
                   <th>Boarder's Phone Number</th>
                   <th>Date Occupied</th>
                   <th>Billing</th>
+                  <th>Next Billing Date</th>
+                  <th>End Date</th>
                   <th>Actions</th>
               </tr>
           </thead>
@@ -226,7 +236,7 @@
           } else if (window.scrollY < 56){
               navEl.classList.remove('navbar-scrolled')
           }
-      })
+      });
 
         document.getElementById('addRoomForm').addEventListener('submit', function(event) {
             event.preventDefault();
@@ -240,7 +250,9 @@
                 boarderName: document.getElementById('boarderName').value || '-',
                 boarderPhone: document.getElementById('boarderPhone').value || '-',
                 dateOccupied: document.getElementById('dateOccupied').value || '-',
-                billing: document.getElementById('billing').value
+                billing: document.getElementById('billing').value,
+                nextBilling: document.getElementById('nextBilling').value || '-',
+                endDate: document.getElementById('endDate').value || '-'
             };
 
             if (isEditMode) {
@@ -269,7 +281,7 @@
 
             document.getElementById('addRoomForm').reset();
             document.getElementById('editMode').value = 'false';
-            document.getElementById('submitButton').value = 'Add Room';
+            document.getElementById('submitButton').textContent = 'Add Room';
         });
 
         function displayRoomList() {
@@ -288,6 +300,8 @@
                         <td>${room.boarderPhone}</td>
                         <td>${room.dateOccupied}</td>
                         <td>${room.billing}</td>
+                        <td>${room.nextBilling}</td>
+                        <td>${room.endDate}</td>
                         <td>
                             <button onclick="editRoom('${room.name}')">Edit</button>
                             <button onclick="deleteRoom('${room.name}')">Delete</button>
@@ -309,19 +323,23 @@
                 document.getElementById('boarderPhone').value = room.boarderPhone;
                 document.getElementById('dateOccupied').value = room.dateOccupied;
                 document.getElementById('billing').value = room.billing;
+                document.getElementById('nextBilling').value = room.nextBilling;
+                document.getElementById('endDate').value = room.endDate;
                 document.getElementById('editMode').value = 'true';
                 document.getElementById('editRoomName').value = room.name;
-                document.getElementById('submitButton').value = 'Save';
+                document.getElementById('submitButton').textContent = 'Save';
             })
             .catch(error => console.error('Error:', error));
         }
 
         function deleteRoom(name) {
-            fetch(`/api/rooms/${name}`, {
-                method: 'DELETE'
-            })
-            .then(displayRoomList)
-            .catch(error => console.error('Error:', error));
+            if (confirm('Are you sure you want to delete this room?')) {
+                fetch(`/api/rooms/${name}`, {
+                    method: 'DELETE'
+                })
+                .then(displayRoomList)
+                .catch(error => console.error('Error:', error));
+            }
         }
 
         // Initial display of stored rooms
